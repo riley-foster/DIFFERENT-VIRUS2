@@ -121,8 +121,7 @@ namespace myTiles {
 `
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.tioletPaper, function (sprite, otherSprite) {
-    info.changeScoreBy(1)
-    otherSprite.destroy()
+	
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Managers, function (sprite, otherSprite) {
     otherSprite.destroy()
