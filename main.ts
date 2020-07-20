@@ -386,6 +386,8 @@ let Managers2: Sprite = null
 let toiletpaper: Sprite = null
 let karen: Sprite = null
 let currentLevel = 0
+game.splash("Welcome to Different Virus")
+game.showLongText("The Different Virus is terrorizing the U.S.A. You are Karen. Your job is to collect as much    toilet paper as possible without getting kicked out by the Managers.    Don't touch the taxation or you lose points. Good  luck Karen! ", DialogLayout.Full)
 currentLevel = 0
 scene.setBackgroundColor(9)
 scene.setBackgroundImage(img`
