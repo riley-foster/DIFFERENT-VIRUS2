@@ -2,6 +2,7 @@ namespace SpriteKind {
     export const tioletPaper = SpriteKind.create()
     export const Managers = SpriteKind.create()
     export const taxation = SpriteKind.create()
+    export const PowerUp = SpriteKind.create()
 }
 namespace myTiles {
     //% blockIdentity=images._tile
@@ -99,6 +100,25 @@ namespace myTiles {
 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
 `
+    //% blockIdentity=images._tile
+    export const tile5 = img`
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+`
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.tioletPaper, function (sprite, otherSprite) {
     info.changeScoreBy(1)
@@ -111,6 +131,10 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Managers, function (sprite, othe
     } else {
         info.changeLifeBy(-1)
     }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.coolRadial, 500)
+    taxation2.destroy(effects.spray, 5000)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (karen.vy == 0) {
@@ -131,7 +155,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, func
 function startLevel () {
     if (currentLevel == 0) {
         tiles.setTilemap(tiles.createTilemap(
-            hex`3200140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000300000200000000000000000000000000000000000000000000000000000000000000000000000000000000000002000505050505050202000000000000000000000000000000000000000000000000000000000200000000000000000003000200000000000000020200000000000000000000000000000000000000000000000000000000020000000000000505050505050000000000000002020000000000000000000000000000000000000000000000000000000002000003000000000000000000000000000000000202000000000000000000000000000000000200000600000000000000000505050505050000000000000200000000000000020200000003000000000000000000000000020005050000000000000000000000000000000000040000020000000000000005050505050500000000000000000003000002000000000000000000000001000000000200050505050505000000000000000000000000000000000000020005050505050500000000000000000000000000000000020000000000000000000000000000000000000000000003000002000000000000000000000000000000000000050505050505000000000000000000000000000000000000000000050505050500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707`,
+            hex`3200140000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000300000200000000000000000000000000000000000000000000000000000000000000000000000000000000000002000505050505050202000000000000000000000000000000000000000000000000000000000200000000000000000003000200000000000000020200000000000000000000000000000000000000000000000000000000020000000000000505050505050000000000000002020000000000000000000000000000000000000000000000000000000002000003000000000000000000000000000000000202000000000000000000000000000000000200000600000000000000000505050505050000000000000200000000000000020200000003000000000000000000000000020005050000000000000000000000000000000000040008020000000000000005050505050500000000000000000003000002000000000000000000000001000000000200050505050505000000000000000000000000000000000000020005050505050500000000000000000000000000000000020000000000000000000000000000000000000000000003000002000000000000000000000000000000000000050505050505000000000000000000000000000000000000000000050505050500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707070707`,
             img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -154,7 +178,7 @@ function startLevel () {
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,sprites.castle.tilePath2,sprites.dungeon.collectibleInsignia,sprites.dungeon.collectibleRedCrystal],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,sprites.castle.tilePath2,sprites.dungeon.collectibleInsignia,sprites.dungeon.collectibleRedCrystal,myTiles.tile5],
             TileScale.Sixteen
         ))
     } else if (currentLevel == 1) {
@@ -178,7 +202,7 @@ function startLevel () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,sprites.castle.tilePath2],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,sprites.castle.tilePath2,myTiles.tile5],
             TileScale.Sixteen
         ))
     } else if (currentLevel == 2) {
@@ -202,7 +226,7 @@ function startLevel () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,sprites.dungeon.collectibleInsignia],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,sprites.dungeon.collectibleInsignia,myTiles.tile5],
             TileScale.Sixteen
         ))
     } else if (currentLevel == 3) {
@@ -226,7 +250,7 @@ function startLevel () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5],
             TileScale.Sixteen
         ))
     } else if (currentLevel == 4) {
@@ -250,7 +274,7 @@ function startLevel () {
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile3,myTiles.tile4,myTiles.tile5],
             TileScale.Sixteen
         ))
     } else {
@@ -270,6 +294,9 @@ function startLevel () {
     }
     for (let value4 of sprites.allOfKind(SpriteKind.Managers)) {
         value4.destroy()
+    }
+    for (let value of sprites.allOfKind(SpriteKind.PowerUp)) {
+        value.destroy()
     }
     for (let value5 of tiles.getTilesByType(myTiles.tile2)) {
         toiletpaper = sprites.create(img`
@@ -351,9 +378,8 @@ function startLevel () {
         2000,
         true
         )
-    }
-    for (let value7 of tiles.getTilesByType(myTiles.tile4)) {
-        taxation2 = sprites.create(img`
+        for (let value7 of tiles.getTilesByType(myTiles.tile4)) {
+            taxation2 = sprites.create(img`
 . . . . . . . . . . . . . 
 . . . . . f f f f . . . . 
 . . . f f f f f f f f . . 
@@ -371,19 +397,43 @@ f f f f c f f f f f f f c
 . . . f f f f f f f . . . 
 . . . f f f . . . . . . . 
 `, SpriteKind.taxation)
-        tiles.placeOnTile(taxation2, value7)
-        tiles.setTileAt(value7, myTiles.tile0)
-        animation.runMovementAnimation(
-        taxation2,
-        "c 75 0 -75 0 0 0",
-        1000,
-        true
-        )
+            tiles.placeOnTile(taxation2, value7)
+            tiles.setTileAt(value7, myTiles.tile0)
+            animation.runMovementAnimation(
+            taxation2,
+            "c 75 0 -75 0 0 0",
+            1000,
+            true
+            )
+        }
+        for (let value of tiles.getTilesByType(myTiles.tile5)) {
+            PowerUps = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . f f f f f f f . . . . . . 
+. . f 6 6 6 6 6 6 6 f . . . . . 
+. f 6 6 1 6 6 6 9 6 6 f . . . . 
+. f 6 1 6 6 6 6 9 9 6 f . . . . 
+. f 6 6 6 6 6 6 6 9 6 f . . . . 
+. f 6 6 6 6 6 6 6 6 6 f . . . . 
+. f 6 6 6 6 6 6 6 6 6 f . . . . 
+. f 6 9 9 6 6 6 6 1 6 f . . . . 
+. f 6 6 9 9 6 6 1 6 6 f . . . . 
+. . f 6 6 6 6 6 6 6 f . . . . . 
+. . . f f f f f f f . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.PowerUp)
+            tiles.placeOnTile(PowerUps, value)
+            tiles.setTileAt(value, myTiles.tile0)
+        }
     }
 }
-let taxation2: Sprite = null
+let PowerUps: Sprite = null
 let Managers2: Sprite = null
 let toiletpaper: Sprite = null
+let taxation2: Sprite = null
 let karen: Sprite = null
 let currentLevel = 0
 game.splash("Welcome to Different Virus")
