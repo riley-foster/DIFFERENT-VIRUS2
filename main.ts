@@ -124,36 +124,6 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.tioletPaper, function (sprite, o
     info.changeScoreBy(1)
     otherSprite.destroy()
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Managers, function (sprite, otherSprite) {
-    otherSprite.destroy()
-    if (karen.y < otherSprite.y) {
-        info.changeScoreBy(1)
-    } else {
-        info.changeLifeBy(-1)
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
-    otherSprite.destroy(effects.coolRadial, 500)
-    if (true) {
-        taxation2.destroy(effects.warmRadial, 1000)
-    }
-})
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (karen.vy == 0) {
-        karen.vy = -150
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.taxation, function (sprite, otherSprite) {
-    info.changeScoreBy(-5)
-    otherSprite.destroy()
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
-    game.over(false, effects.dissolve)
-})
-scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
-    currentLevel += 1
-    startLevel()
-})
 function startLevel () {
     if (currentLevel == 0) {
         tiles.setTilemap(tiles.createTilemap(
@@ -452,10 +422,40 @@ function startLevel () {
         }
     }
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Managers, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    if (karen.y < otherSprite.y) {
+        info.changeScoreBy(1)
+    } else {
+        info.changeLifeBy(-1)
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.PowerUp, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.coolRadial, 500)
+    if (true) {
+        taxation2.destroy(effects.warmRadial, 1000)
+    }
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (karen.vy == 0) {
+        karen.vy = -150
+    }
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.taxation, function (sprite, otherSprite) {
+    info.changeScoreBy(-5)
+    otherSprite.destroy()
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleRedCrystal, function (sprite, location) {
+    game.over(false, effects.dissolve)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
+    currentLevel += 1
+    startLevel()
+})
 let PowerUps: Sprite = null
+let taxation2: Sprite = null
 let Managers2: Sprite = null
 let toiletpaper: Sprite = null
-let taxation2: Sprite = null
 let karen: Sprite = null
 let currentLevel = 0
 scene.setBackgroundColor(9)
